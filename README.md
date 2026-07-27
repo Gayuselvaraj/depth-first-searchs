@@ -54,39 +54,36 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
-<hr>
-<h3>Sample Input</h3>
-<hr>
-8 9 <BR>
-A B <BR>
-A C <BR>
-B E <BR>
-C D <BR>
-B D <BR>
-C G <BR>
-D F <BR>
-G F <BR>
-F H <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
 
-<hr>
+ ## PROGRAM 
+ ```
+from collections import defaultdict
+def dfs(graph,start,visited,path):
+    path.append(start)
+    visited[start]=True
+    for neighbour in graph[start]:
+       if visited[neighbour]==False:
+            dfs(graph,neighbour,visited,path)
+            visited[neighbour]=True
+    return path
+graph=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split(' '))
+    graph[u].append(v)
+    graph[v].append(u)
+start='A'
+visited=defaultdict(bool)
+path=[]
+traversedpath=dfs(graph,start,visited,path)
+print(traversedpath)
 
-<hr>
-<h3>Sample Input</h3>
-<hr>
-5 5 <BR>
-0 1 <BR>
-0 2 <BR>
-0 3 <BR>
-2 3 <BR>
-2 4 <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['0', '1', '2', '3', '4']
+```
+
+## OUTPUT
+
+<img width="1166" height="170" alt="image" src="https://github.com/user-attachments/assets/ca17aa1a-62a5-4dc3-b0fd-d1217e54e89d" />
+
 
 <hr>
 <h3>Result:</h3>
